@@ -84,7 +84,7 @@ def _main():
                 epochs=50,
                 initial_epoch=0,
                 callbacks=[logging, checkpoint])
-        model.save_weights(log_dir + 'trained_weights_stage_1.h5')
+        model.save_weights(log_dir + 'my_yolo.h5')
 
     # Unfreeze and continue training, to fine-tune.
     # Train longer if the result is not good.
