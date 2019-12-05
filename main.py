@@ -4,11 +4,15 @@ from PIL import Image
 from yolo import YOLO
 
 
-model = YOLO(model_path="model_data/my_yolo.h5", classes_path="model_data/voc_classes.txt")
+model = YOLO(
+    model_path="model_data/my_yolo.h5",
+    anchors_path="model_data/yolo_anchors.txt",
+    classes_path="model_data/voc_classes.txt"
+)
 
-cam = cv2.VideoCapture(0)
-while cam.isOpened():
-    success, frame = cam.read()
+camera = cv2.VideoCapture(0)
+while camera.isOpened():
+    success, frame = camera.read()
     if not success:
         break
 
@@ -20,5 +24,5 @@ while cam.isOpened():
     cv2.imshow("image", img)
     if cv2.waitKey(1) in [ord('q'), 27]:
         break
-cam.release()
+camera.release()
 cv2.destroyAllWindows()
