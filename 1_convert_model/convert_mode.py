@@ -31,7 +31,7 @@ def freeze_session(session, keep_var_names=None, output_names=None, clear_device
         return frozen_graph
 
 
-model = YOLO(model_path="model_data/my_yolo.h5", classes_path="model_data/voc_classes.txt")
+model = YOLO(model_path="model_data/my_yolo2007.h5", classes_path="model_data/voc_classes.txt")
 
 # inputs:  ['dense_input']
 print('inputs: ', [input.op.name for input in model.yolo_model.inputs])

@@ -9,7 +9,7 @@ import numpy as np
 from PIL import Image
 
 
-model = YOLO(model_path="model_data/my_yolo.h5", classes_path="model_data/voc_classes.txt")
+model = YOLO(model_path="model_data/my_yolo2007.h5", classes_path="model_data/voc_classes.txt")
 graph = tf.get_default_graph()
 
 HOST = "127.0.0.1"

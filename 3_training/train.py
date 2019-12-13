@@ -63,13 +63,16 @@ def _main():
                 epochs=50,
                 initial_epoch=0,
                 callbacks=[logging, checkpoint])
-        model.save_weights(log_dir + 'my_yolo.h5')
+        model.save_weights(log_dir + 'trained_weights_final.h5')
 
     # Unfreeze and continue training, to fine-tune.
     # Train longer if the result is not good.
     if True:
         for i in range(len(model.layers)):
             model.layers[i].trainable = True
+        for i in range(len(model.layers) - 150):
+            model.layers[i].trainable = False
+
         model.compile(optimizer=Adam(lr=1e-4), loss={'yolo_loss': lambda y_true, y_pred: y_pred}) # recompile to apply the change
         print('Unfreeze all of the layers.')
 
@@ -85,7 +88,6 @@ def _main():
         model.save_weights(log_dir + 'trained_weights_final.h5')
 
     # Further training if needed.
-
 
 def get_classes(classes_path):
     '''loads the classes'''

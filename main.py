@@ -5,7 +5,7 @@ from yolo import YOLO
 
 
 model = YOLO(
-    model_path="model_data/my_yolo.h5",
+    model_path="model_data/trained_weights_final.h5",
     anchors_path="model_data/yolo_anchors.txt",
     classes_path="model_data/voc_classes.txt"
 )
