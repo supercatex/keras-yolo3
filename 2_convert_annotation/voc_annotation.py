@@ -6,7 +6,7 @@ sets=[('2012', 'train'), ('2012', 'val'), ('2012', 'test')]
 
 classes = ["aeroplane", "bicycle", "bird", "boat", "bottle", "bus", "car", "cat", "chair", "cow", "diningtable", "dog", "horse", "motorbike", "person", "pottedplant", "sheep", "sofa", "train", "tvmonitor"]
 
-basedir = "../../datasets"
+basedir = "../../_datasets"
 
 
 def convert_annotation(year, image_id, list_file):
@@ -26,6 +26,9 @@ def convert_annotation(year, image_id, list_file):
 
 
 for year, image_set in sets:
+    if not os.path.exists('%s/VOCdevkit/VOC%s/ImageSets/Main/%s.txt'%(basedir, year, image_set)):
+        print(year, image_set, "not found.")
+        continue
     image_ids = open('%s/VOCdevkit/VOC%s/ImageSets/Main/%s.txt'%(basedir, year, image_set)).read().strip().split()
     list_file = open('%s_%s.txt'%(year, image_set), 'w')
     for image_id in image_ids:

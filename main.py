@@ -7,7 +7,7 @@ tf.compat.v1.disable_eager_execution()
 
 
 model = YOLO(
-    model_path="model_data/yolo.h5",
+    model_path="model_data/yolov3.h5",
     anchors_path="model_data/yolo_anchors.txt",
     classes_path="model_data/coco_classes.txt"
 )
