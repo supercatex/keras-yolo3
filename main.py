@@ -2,12 +2,14 @@ import cv2
 import numpy as np
 from PIL import Image
 from yolo import YOLO
+import tensorflow as tf
+tf.compat.v1.disable_eager_execution()
 
 
 model = YOLO(
-    model_path="model_data/trained_weights_final.h5",
+    model_path="model_data/yolo.h5",
     anchors_path="model_data/yolo_anchors.txt",
-    classes_path="model_data/voc_classes.txt"
+    classes_path="model_data/coco_classes.txt"
 )
 
 camera = cv2.VideoCapture(0)
@@ -16,7 +18,9 @@ while camera.isOpened():
     if not success:
         break
 
-    img = Image.fromarray(frame)
+    img = cv2.resize(frame, (416, 416))
+    img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+    img = Image.fromarray(img)
     img = model.detect_image(img)
     img = np.asarray(img)
 
